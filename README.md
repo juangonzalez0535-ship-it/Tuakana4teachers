@@ -24,4 +24,4 @@ El repositorio puede desplegarse como sitio estático. Para rutas `/apps/nombre/
 ## Primeras herramientas
 
 - **Historias al Cubo:** juego de dados para narración oral (V4 publicada en `apps/historias-al-cubo/`).
-- **Simulador Aeroespacial:** candidato a incorporar cuando se valide el archivo final.
+- **Simulador de Planeador:** Glider Lab, sesión 2, incorporado en `apps/simulador-planeador/`.
