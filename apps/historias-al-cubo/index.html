@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Historias al Cubo · Tukana</title>
+<style>
+:root{--ink:#18233a;--muted:#66728a;--purple:#6046db;--line:#e4e5f0;--bg:#f7f7fc}*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}button,select{font:inherit}button{cursor:pointer}header{background:#fff;border-bottom:1px solid var(--line);padding:17px max(20px,calc((100vw - 1090px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px}.brand{font-size:23px;font-weight:900;letter-spacing:-1px}.brand span{color:var(--purple)}.header-note{font-size:12px;color:var(--muted);font-weight:650}.wrap{max-width:1090px;margin:auto;padding:39px 20px 65px}.intro{display:flex;align-items:start;justify-content:space-between;gap:20px;margin-bottom:25px}.intro h1{font-size:clamp(34px,5.5vw,54px);letter-spacing:-2px;line-height:1.05;margin:0 0 13px}.intro h1 span{color:var(--purple)}.intro p{margin:0;line-height:1.6;color:var(--muted);max-width:680px}.help{border:1px solid #ddd8ff;background:#edeaff;color:#5541c5;border-radius:99px;padding:11px 17px;font-size:14px;font-weight:800;white-space:nowrap}.help:hover{background:#e4deff}.panel{background:white;border:1px solid var(--line);border-radius:23px;padding:28px;box-shadow:0 12px 32px #1d174b09}.setup{display:flex;gap:15px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}.fields{display:flex;gap:13px;flex-wrap:wrap;flex:1}.field{display:flex;flex-direction:column;gap:7px;min-width:160px;flex:1}.field label{font-size:12px;font-weight:800;color:var(--muted)}select{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:white;color:var(--ink);outline-color:var(--purple)}.roll{border:0;border-radius:13px;background:var(--purple);color:white;padding:14px 22px;font-weight:850;box-shadow:0 8px 16px #6046db21}.roll:disabled{opacity:.68;cursor:wait}.roll:hover:not(:disabled){background:#5139c7}.stage{position:relative;min-height:390px;background:radial-gradient(ellipse at 50% 25%,#fff 0%,#f7f5ff 48%,#efedfa 100%);border:1px solid #eeebfb;border-radius:21px;margin:24px 0 14px;padding:34px 22px 40px;display:flex;align-items:center;justify-content:center;gap:clamp(18px,3vw,37px);flex-wrap:wrap;overflow:hidden;perspective:950px}.stage:before{content:"";position:absolute;inset:0;background-image:radial-gradient(#9c8fe52a 1px,transparent 1px);background-size:25px 25px;pointer-events:none}.die-slot{width:var(--cube-size);height:calc(var(--cube-size) + 34px);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:24px;position:relative;z-index:1}.die-hit{width:var(--cube-size);height:var(--cube-size);padding:0;border:0;outline-offset:9px;background:transparent;perspective:700px;touch-action:manipulation}.cube{position:relative;width:100%;height:100%;transform-style:preserve-3d;transform:rotateX(-17deg) rotateY(-22deg);transition:none}.face{position:absolute;inset:0;border:2px solid #dedbf2;background:linear-gradient(140deg,#fff 10%,#f5f3ff 100%);border-radius:18px;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;box-shadow:inset 0 0 0 3px #ffffffac}.symbol{font-size:calc(var(--cube-size) * .47);line-height:1;filter:drop-shadow(0 2px 1px #00000010);user-select:none}.front{transform:translateZ(calc(var(--cube-size) / 2))}.back{transform:rotateY(180deg) translateZ(calc(var(--cube-size) / 2))}.right{transform:rotateY(90deg) translateZ(calc(var(--cube-size) / 2))}.left{transform:rotateY(-90deg) translateZ(calc(var(--cube-size) / 2))}.top{transform:rotateX(90deg) translateZ(calc(var(--cube-size) / 2))}.bottom{transform:rotateX(-90deg) translateZ(calc(var(--cube-size) / 2))}.die-label{text-align:center;font-size:13px;font-weight:800;background:#fff;border:1px solid #e6e4f4;border-radius:99px;padding:6px 12px;min-width:88px}.die-hit:hover .cube{filter:brightness(1.025)}.hint{text-align:center;font-size:13px;line-height:1.5;color:var(--muted);margin:0}.hint strong{color:var(--purple)}.ideas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:19px}.idea{border:1px solid var(--line);border-radius:15px;background:white;padding:17px}.idea b{display:block;font-size:14px;margin-bottom:5px}.idea p{font-size:12px;line-height:1.55;color:var(--muted);margin:0}footer{padding:15px 0;text-align:center;font-size:12px;color:var(--muted)}dialog{border:0;border-radius:22px;padding:0;width:min(540px,calc(100vw - 32px));color:var(--ink);box-shadow:0 22px 90px #19213b55}dialog::backdrop{background:#11183199;backdrop-filter:blur(4px)}.modal-inner{padding:27px}.modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.modal-head h2{font-size:24px;letter-spacing:-.7px;margin:0 0 9px}.close{border:0;background:#f1effa;border-radius:9px;width:35px;height:35px;font-size:22px}.modal-inner>p{line-height:1.6;color:var(--muted);font-size:14px;margin:5px 0 20px}.games{display:grid;gap:12px}.game{background:#f7f6fe;border:1px solid #e9e5fd;padding:14px 16px;border-radius:13px}.game strong{font-size:14px}.game p{font-size:13px;line-height:1.55;color:#57627a;margin:5px 0 0}.modal-foot{margin-top:17px;font-size:12px;color:var(--muted)}@media(max-width:680px){.wrap{padding:27px 14px 45px}.intro{flex-wrap:wrap;gap:15px}.panel{padding:16px}.setup{align-items:stretch}.fields{width:100%}.roll{width:100%}.stage{min-height:320px;gap:21px;padding:28px 12px}.ideas{grid-template-columns:1fr}.header-note{display:none}}@media(prefers-reduced-motion:reduce){.cube{transition:none}}
+</style></head>
+<body><header><div class="brand">tukana<span>✳</span> <span class="header-note">LAB</span></div><span class="header-note">Creatividad · Narración oral</span></header><main class="wrap"><section class="intro"><div><h1>Historias al <span>Cubo.</span></h1><p>Lanza los dados, observa las imágenes e inventa historias en voz alta. No existe una única respuesta: tu imaginación pone las reglas.</p></div><button class="help" id="showHelp" type="button">ⓘ Cómo jugar</button></section><section class="panel"><div class="setup"><div class="fields"><div class="field"><label for="count">Número de dados</label><select id="count"><option value="1">1 dado</option><option value="2">2 dados</option><option selected="" value="3">3 dados</option><option value="4">4 dados</option><option value="5">5 dados</option></select></div><div class="field"><label for="theme">Categoría</label><select id="theme"><option value="todos">Sorpresa total</option><option value="aventura">Aventura</option><option value="fantasia">Fantasía</option><option value="cotidiano">Vida cotidiana</option><option value="ciencia">Ciencia e inventos</option></select></div></div><button class="roll" id="roll" type="button">🎲 Lanzar dados</button></div><div aria-label="Mesa con dados de historias" aria-live="polite" class="stage" id="stage"></div><p class="hint">💡 <strong>Toca cualquier dado</strong> para lanzarlo de nuevo sin cambiar los demás.</p></section><div class="ideas"><div class="idea"><b>📖 Una historia inesperada</b><p>Conecta todas las imágenes para inventar un cuento con principio, problema y final.</p></div><div class="idea"><b>🔗 ¿Qué tienen en común?</b><p>Encuentra una palabra, idea o característica que conecte todas las imágenes.</p></div><div class="idea"><b>🎭 Cambia la perspectiva</b><p>Cuenta la historia como si fueras uno de los objetos o personajes de los dados.</p></div></div></main><footer>Una experiencia de Tukana · Diseñado para imaginar y conversar</footer>
+<dialog aria-labelledby="helpTitle" id="instructions"><div class="modal-inner"><div class="modal-head"><h2 id="helpTitle">🎲 ¿Cómo jugar?</h2><button aria-label="Cerrar" class="close" id="closeHelp" type="button">×</button></div><p>Elige una categoría y entre 1 y 5 dados. Lánzalos y utiliza las imágenes que aparezcan para jugar oralmente, solo o en grupo. Puedes relanzar un dado tocándolo.</p><div class="games"><div class="game"><strong>1. Crea un cuento</strong><p>Inventa una historia que incluya todos los símbolos. ¿Quién es el protagonista, qué sucede y cómo termina?</p></div><div class="game"><strong>2. Una conexión secreta</strong><p>Piensa en una palabra, concepto o característica que una todos los dibujos. Explica por qué los relacionaste.</p></div><div class="game"><strong>3. Historia en equipo</strong><p>Cada persona añade una parte del cuento usando una imagen diferente. La última persona inventa el desenlace.</p></div><div class="game"><strong>4. Un nuevo giro</strong><p>Cuenta una historia y después cambia un solo dado. ¿Cómo se transforma el cuento?</p></div><div class="game"><strong>5. Una perspectiva imposible</strong><p>Elige una imagen y habla como si fueras ese personaje, objeto o lugar. ¿Qué piensas, qué quieres y qué te sucede?</p></div></div><div class="modal-foot">No hay puntos, niveles ni respuestas únicas. La meta es conversar, conectar ideas e imaginar.</div></div></dialog>
+<script>'use strict';
+const pools={aventura:[['🗺️','Mapa'],['🏝️','Isla'],['⛵','Barco'],['🧭','Brújula'],['⛰️','Montaña'],['🏕️','Campamento'],['🌋','Volcán'],['🏴‍☠️','Pirata'],['🔑','Llave'],['🌉','Puente'],['🚂','Tren'],['🦁','León'],['🎒','Mochila'],['💎','Tesoro'],['🪂','Paracaídas'],['🌊','Ola'],['🚀','Cohete'],['🔦','Linterna']],fantasia:[['🐉','Dragón'],['🪄','Varita'],['🧙','Mago'],['🏰','Castillo'],['👑','Corona'],['🧚','Hada'],['🌙','Luna'],['🦄','Unicornio'],['🔮','Cristal'],['🧜‍♀️','Sirena'],['🪞','Espejo'],['🦋','Mariposa'],['🕰️','Reloj'],['📜','Pergamino'],['☁️','Nube'],['🧪','Poción'],['🕷️','Araña'],['🚪','Puerta']],cotidiano:[['🏠','Casa'],['🐱','Gato'],['🐶','Perro'],['🎂','Torta'],['📚','Libros'],['🚲','Bicicleta'],['🎈','Globo'],['☂️','Paraguas'],['🌧️','Lluvia'],['⚽','Balón'],['🍎','Manzana'],['🚌','Bus'],['🎵','Música'],['👟','Zapato'],['📱','Teléfono'],['🌻','Flor'],['🧸','Oso de peluche'],['🎁','Regalo']],ciencia:[['🤖','Robot'],['🧲','Imán'],['🔬','Microscopio'],['🪐','Planeta'],['🧬','ADN'],['🔋','Batería'],['💡','Bombillo'],['🧠','Cerebro'],['🛰️','Satélite'],['🛸','OVNI'],['⚙️','Engranaje'],['🦠','Microbio'],['🔭','Telescopio'],['🌡️','Termómetro'],['🧑‍🚀','Astronauta'],['🧯','Extintor'],['⏳','Reloj de arena'],['🧩','Rompecabezas']]};
+
+const $ = id => document.getElementById(id);
+const pick = list => list[Math.floor(Math.random()*list.length)];
+const faceNames = ['front','back','right','left','top','bottom'];
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+let dice = [];
+let busy = false;
+let rollSequence = 0;
+const stage = $('stage');
+
+function available() {
+  return $('theme').value === 'todos' ? Object.values(pools).flat() : pools[$('theme').value];
+}
+function choose(excluded = []) {
+  const pool = available();
+  const remaining = pool.filter(item => !excluded.includes(item[1]));
+  return pick(remaining.length ? remaining : pool);
+}
+function createModel(symbol, pool) {
+  // Each die owns SIX persistent faces; sibling dice never get recreated on a single reroll.
+  const faces = [symbol];
+  const choices = [...pool.filter(item => item[1] !== symbol[1])];
+  for (let j = 1; j < 6; j++) {
+    if (!choices.length) choices.push(...pool.filter(item => item[1] !== symbol[1]));
+    const k = Math.floor(Math.random() * choices.length);
+    faces.push(choices.splice(k, 1)[0]);
+  }
+  return { symbol, faces };
+}
+function setSize() {
+  stage.style.setProperty('--cube-size', (window.innerWidth < 500 ? 83 : window.innerWidth < 750 ? 100 : 125) + 'px');
+}
+function makeDie(model, index) {
+  const slot = document.createElement('div');
+  slot.className = 'die-slot';
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'die-hit';
+  btn.title = 'Volver a lanzar el dado ' + (index + 1);
+  btn.setAttribute('aria-label', 'Dado ' + (index + 1) + ': ' + model.symbol[1] + '. Volver a lanzar');
+  const cube = document.createElement('div');
+  cube.className = 'cube';
+  model.faces.forEach((item, j) => {
+    const face = document.createElement('div');
+    face.className = 'face ' + faceNames[j];
+    const content = document.createElement('span');
+    content.className = 'symbol';
+    content.textContent = item[0];
+    face.append(content);
+    cube.append(face);
+  });
+  btn.append(cube);
+  const label = document.createElement('div');
+  label.className = 'die-label';
+  label.textContent = model.symbol[1];
+  slot.append(btn, label);
+  btn.addEventListener('click', () => rollOne(index));
+  return slot;
+}
+function render() {
+  // Only for deliberate setting changes; never used after rerolling an individual die.
+  setSize();
+  stage.replaceChildren(...dice.map(makeDie));
+}
+function setupDice() {
+  if (busy) return;
+  const pool = available();
+  const selected = [];
+  const count = Number($('count').value);
+  dice = Array.from({ length: count }, () => {
+    const symbol = choose(selected);
+    selected.push(symbol[1]);
+    return createModel(symbol, pool);
+  });
+  render(); // Intentionally instant: changing settings must NEVER throw or roll dice.
+}
+function updateDie(index, model) {
+  dice[index] = model;
+  const slot = stage.children[index];
+  if (!slot) return;
+  model.faces.forEach((item, j) => { slot.querySelectorAll('.symbol')[j].textContent = item[0]; });
+  slot.querySelector('.die-label').textContent = model.symbol[1];
+  const btn = slot.querySelector('.die-hit');
+  btn.setAttribute('aria-label', 'Dado ' + (index + 1) + ': ' + model.symbol[1] + '. Volver a lanzar');
+}
+async function animateRoll(indices, nextModels) {
+  if (busy) return;
+  busy = true;
+  const sequence = ++rollSequence;
+  ['roll', 'count', 'theme'].forEach(id => $(id).disabled = true);
+  const active = indices.map((index, k) => ({
+    index, next: nextModels[k], slot: stage.children[index]
+  }));
+  try {
+    if (!reducedMotion.matches) {
+      await Promise.all(active.map(async ({index, next, slot}, order) => {
+        const btn = slot.querySelector('.die-hit');
+        const cube = slot.querySelector('.cube');
+        const label = slot.querySelector('.die-label');
+        // Separate translation of the die (not the label) from its rotation.
+        // A small sideward displacement and a final wobble give it weight.
+        const side = (index % 2 ? -1 : 1) * (11 + Math.random() * 9);
+        const duration = 1080 + order * 65 + Math.random() * 110;
+        const shift = btn.animate([
+          {transform:'translate3d(0,0,0) scale(1)',offset:0},
+          {transform:`translate3d(${side*.26}px,-45px,0) scale(1.045)`,offset:.24},
+          {transform:`translate3d(${side*.82}px,-15px,0) scale(1.015)`,offset:.51},
+          {transform:`translate3d(${side}px,0,0) scale(1.02,.965)`,offset:.73},
+          {transform:`translate3d(${side*.78}px,-8px,0) scale(1)`,offset:.83},
+          {transform:`translate3d(${side*.28}px,0,0) scale(1.005,.993)`,offset:.94},
+          {transform:'translate3d(0,0,0) scale(1)',offset:1}
+        ],{duration,easing:'linear'});
+        const spin = cube.animate([
+          {transform:'rotateX(-17deg) rotateY(-22deg) rotateZ(0deg)',offset:0},
+          {transform:`rotateX(${360*1.12-17}deg) rotateY(${360*.78-22}deg) rotateZ(25deg)`,offset:.27},
+          {transform:`rotateX(${360*2.12-17}deg) rotateY(${360*1.65-22}deg) rotateZ(-19deg)`,offset:.54},
+          {transform:`rotateX(${360*2.73-17}deg) rotateY(${360*2.76-22}deg) rotateZ(12deg)`,offset:.75},
+          {transform:`rotateX(${360*3.04-17}deg) rotateY(${360*3.04-22}deg) rotateZ(-6deg)`,offset:.88},
+          {transform:`rotateX(${360*3-17}deg) rotateY(${360*3-22}deg) rotateZ(0deg)`,offset:1}
+        ],{duration,easing:'cubic-bezier(.12,.63,.2,1)'});
+        // Swap images while the cube is spinning fast, not at the landing.
+        // The visual result is already fixed before it settles.
+        let swapped = false;
+        const swapAt = setTimeout(() => {
+          if (sequence === rollSequence) {
+            updateDie(index, next);
+            swapped = true;
+          }
+        },duration*.45);
+        try {
+          await Promise.all([shift.finished,spin.finished]);
+        } finally {
+          clearTimeout(swapAt);
+          if (!swapped && sequence === rollSequence) updateDie(index,next);
+          btn.style.transform = '';
+          cube.style.transform = '';
+          label.style.transform = '';
+        }
+      }));
+    } else {
+      active.forEach(({index,next}) => updateDie(index,next));
+    }
+  } catch(error) {
+    active.forEach(({index,next}) => updateDie(index,next));
+  } finally {
+    busy = false;
+    ['roll','count','theme'].forEach(id => $(id).disabled = false);
+  }
+}
+function rollAll() {
+  if (busy) return;
+  const used = [];
+  const pool = available();
+  const updates = dice.map(() => {
+    const result = choose(used);
+    used.push(result[1]);
+    return createModel(result, pool);
+  });
+  animateRoll(dice.map((_, i) => i), updates);
+}
+function rollOne(index) {
+  if (busy) return;
+  const excluded = dice.filter((_, i) => i !== index).map(d => d.symbol[1]);
+  const next = createModel(choose(excluded), available());
+  animateRoll([index], [next]);
+}
+$('roll').addEventListener('click', rollAll);
+$('count').addEventListener('change', setupDice);
+$('theme').addEventListener('change', setupDice);
+window.addEventListener('resize', setSize);
+$('showHelp').onclick = () => $('instructions').showModal();
+$('closeHelp').onclick = () => $('instructions').close();
+$('instructions').addEventListener('click', e => { if (e.target === $('instructions')) $('instructions').close(); });
+setupDice();
+</script></body></html>
