@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tukana Aerospace — Glider Lab</title>
+<style>
+  :root{
+    --bg:#f4f6f8; --panel:#ffffff; --ink:#182234; --muted:#667085;
+    --blue:#203f68; --blue2:#315f98; --line:#d7dee7; --gold:#e2ac29;
+    --green:#2f7a58; --red:#aa4545; --sky:#eef6ff; --ground:#eef5e8;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+  header{background:var(--blue);color:#fff;padding:28px 24px;border-bottom:5px solid var(--gold)}
+  header .inner{max-width:1180px;margin:auto}
+  h1{margin:0;font-size:30px}
+  header p{margin:8px 0 0;color:#dce7f2}
+  main{max-width:1180px;margin:auto;padding:24px}
+  .panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:18px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .controls{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .control{padding:12px;border:1px solid var(--line);border-radius:12px;background:#fbfcfd}
+  label{font-size:13px;font-weight:700}
+  .val{float:right;color:var(--blue);font-weight:800}
+  input[type=range]{width:100%}
+  select{width:100%;padding:9px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+  .buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  button{border:0;border-radius:10px;padding:11px 14px;font-weight:800;cursor:pointer}
+  .primary{background:var(--gold);color:#2b230d}
+  .secondary{background:#e9eef4;color:var(--blue)}
+  .note{border-left:4px solid var(--gold);background:#fff8e7;padding:10px 12px;border-radius:8px;font-size:13px;margin-top:12px}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
+  .kpi{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fbfcfd}
+  .kpi strong{display:block;font-size:22px;color:var(--blue)}
+  .kpi span{font-size:12px;color:var(--muted)}
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .small{font-size:13px;color:var(--muted);line-height:1.45}
+  .good{color:var(--green)!important}.bad{color:var(--red)!important}
+  .concept-title{margin:0 0 6px;color:var(--blue)}
+  svg{max-width:100%;height:auto}
+  .illustration{border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden}
+  .formula{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#f4f6f8;border:1px solid var(--line);padding:9px 10px;border-radius:8px}
+  .exercise{padding:12px 0;border-bottom:1px solid var(--line)}
+  .exercise:last-child{border-bottom:0}
+  @media(max-width:850px){.grid,.controls,.compare,.kpis{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="inner">
+    <h1>Glider Lab — Flight · Sesión 2</h1>
+    <p>Explora cómo tamaño y forma del ala, masa y centro de masa afectan el vuelo de un planeador.</p>
+  </div>
+</header>
+
+<main>
+
+<section class="panel">
+  <h2 class="concept-title">Ilustración 1 · Las cuatro fuerzas del vuelo</h2>
+  <p class="small">Usa esta vista al comienzo de la clase para conectar la sesión anterior con el diseño del planeador.</p>
+  <div class="illustration">
+    <svg viewBox="0 0 900 420" aria-label="Diagrama de fuerzas sobre un planeador">
+      <defs>
+        <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#315f98"/>
+        </marker>
+        <marker id="arrowGold" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#e2ac29"/>
+        </marker>
+        <marker id="arrowRed" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#aa4545"/>
+        </marker>
+        <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="#2f7a58"/>
+        </marker>
+      </defs>
+      <rect width="900" height="420" fill="#eef6ff"/>
+      <g transform="translate(450 220)">
+        <path d="M-170 -12 C-105 -48 105 -48 170 -12 C112 3 -112 3 -170 -12 Z" fill="#315f98"/>
+        <rect x="-16" y="-48" width="32" height="95" rx="12" fill="#e2ac29"/>
+        <path d="M-40 38 L40 38 L24 72 L-24 72 Z" fill="#203f68"/>
+      </g>
+
+      <line x1="450" y1="205" x2="450" y2="70" stroke="#315f98" stroke-width="5" marker-end="url(#arrowBlue)"/>
+      <text x="470" y="88" font-size="22" fill="#203f68" font-weight="700">Sustentación (Lift)</text>
+
+      <line x1="450" y1="235" x2="450" y2="370" stroke="#aa4545" stroke-width="5" marker-end="url(#arrowRed)"/>
+      <text x="470" y="360" font-size="22" fill="#7c3131" font-weight="700">Peso (Weight)</text>
+
+      <line x1="420" y1="220" x2="220" y2="220" stroke="#e2ac29" stroke-width="5" marker-end="url(#arrowGold)"/>
+      <text x="205" y="195" font-size="22" fill="#7d6113" font-weight="700">Resistencia (Drag)</text>
+
+      <line x1="480" y1="220" x2="690" y2="220" stroke="#2f7a58" stroke-width="5" marker-end="url(#arrowGreen)"/>
+      <text x="625" y="195" font-size="22" fill="#245d44" font-weight="700">Empuje / velocidad inicial</text>
+
+      <text x="36" y="395" font-size="15" fill="#667085">En un planeador no hay motor durante el planeo: la energía inicial y la gravedad permiten que avance mientras pierde altura.</text>
+    </svg>
+  </div>
+</section>
+
+<section class="panel">
+  <h2 class="concept-title">Ilustración 2 · El planeador y las líneas de flujo</h2>
+  <p class="small">La idea no es memorizar una explicación completa de aerodinámica, sino visualizar cómo el ala modifica el flujo y cómo aparecen presión, sustentación y resistencia.</p>
+  <div class="illustration">
+    <svg viewBox="0 0 900 420" aria-label="Planeador moviéndose entre líneas de flujo">
+      <rect width="900" height="420" fill="#f7fbff"/>
+      <g fill="none" stroke="#8db5d7" stroke-width="3" opacity=".9">
+        <path d="M20 90 C220 90 300 100 380 135 C470 173 560 142 880 115"/>
+        <path d="M20 125 C220 125 300 132 385 155 C480 181 600 160 880 150"/>
+        <path d="M20 165 C220 165 305 168 395 180 C500 195 610 190 880 188"/>
+        <path d="M20 240 C220 240 305 236 395 220 C505 201 620 214 880 226"/>
+        <path d="M20 285 C220 285 300 275 385 245 C480 211 600 245 880 265"/>
+        <path d="M20 325 C220 325 295 310 375 270 C470 225 580 280 880 305"/>
+      </g>
+      <g transform="translate(445 205) rotate(-4)">
+        <path d="M-175 0 C-105 -28 105 -28 175 0 C112 10 -112 10 -175 0 Z" fill="#315f98"/>
+        <rect x="-14" y="-45" width="28" height="88" rx="11" fill="#e2ac29"/>
+        <path d="M-34 30 L34 30 L20 62 L-20 62 Z" fill="#203f68"/>
+      </g>
+      <path d="M690 70 C745 52 797 58 842 86" fill="none" stroke="#e2ac29" stroke-width="4"/>
+      <text x="675" y="46" font-size="18" fill="#7d6113" font-weight="700">El ala cambia el flujo</text>
+      <text x="55" y="55" font-size="18" fill="#203f68">Flujo de aire relativo</text>
+      <text x="610" y="372" font-size="15" fill="#667085">La forma del ala cambia cuánto lift y drag produce para una misma condición de vuelo.</text>
+    </svg>
+  </div>
+</section>
+
+<section class="grid">
+  <div class="panel">
+    <h2 class="concept-title">1. Diseña tu planeador</h2>
+    <div class="controls">
+      <div class="control"><label>Envergadura <span id="spanV" class="val"></span></label><input id="span" type="range" min="35" max="100" value="65" step="1"></div>
+      <div class="control"><label>Cuerda media <span id="chordV" class="val"></span></label><input id="chord" type="range" min="6" max="22" value="12" step="0.5"></div>
+      <div class="control"><label>Masa <span id="massV" class="val"></span></label><input id="mass" type="range" min="40" max="220" value="90" step="5"></div>
+      <div class="control"><label>Velocidad de lanzamiento <span id="speedV" class="val"></span></label><input id="speed" type="range" min="3" max="12" value="7" step="0.2"></div>
+      <div class="control"><label>Forma del ala</label><select id="shape"><option value="rect">Rectangular</option><option value="taper">Trapezoidal</option><option value="ellip" selected>Elíptica</option><option value="swept">Barrida</option></select></div>
+      <div class="control"><label>Centro de masa</label><select id="cg"><option value="forward">Adelantado</option><option value="neutral" selected>Equilibrado</option><option value="aft">Atrasado</option></select></div>
+    </div>
+    <div class="buttons">
+      <button class="primary" id="run">Lanzar planeador</button>
+      <button class="secondary" id="save">Guardar diseño A</button>
+      <button class="secondary" id="reset">Restablecer</button>
+    </div>
+    <div class="note"><strong>Modelo educativo simplificado:</strong> muestra tendencias y relaciones entre variables. No sustituye un modelo aerodinámico real.</div>
+  </div>
+
+  <div class="panel">
+    <h2 class="concept-title">2. Observa el vuelo</h2>
+    <svg id="flightSvg" viewBox="0 0 720 360" class="illustration" aria-label="Trayectoria simulada del planeador">
+      <rect width="720" height="260" fill="#eef6ff"/>
+      <rect y="260" width="720" height="100" fill="#eef5e8"/>
+      <line x1="0" y1="260" x2="720" y2="260" stroke="#81966f" stroke-width="2"/>
+      <path id="trajectory" d="M45 60 L560 260" fill="none" stroke="#e2ac29" stroke-width="4" stroke-dasharray="8 8"/>
+      <g id="plane" transform="translate(45 60)">
+        <path id="wingShape" d="M-32 -8 L32 -8 L32 8 L-32 8 Z" fill="#315f98"/>
+        <rect x="-3" y="-20" width="6" height="40" rx="3" fill="#e2ac29"/>
+      </g>
+      <text id="svgText" x="18" y="26" font-size="14" fill="#203f68"></text>
+    </svg>
+    <p id="flightStatus" class="small"></p>
+  </div>
+</section>
+
+<section class="panel">
+  <h2 class="concept-title">3. Resultados del diseño</h2>
+  <div class="kpis">
+    <div class="kpi"><strong id="areaOut">—</strong><span>Área alar</span></div>
+    <div class="kpi"><strong id="arOut">—</strong><span>Aspect ratio</span></div>
+    <div class="kpi"><strong id="stallOut">—</strong><span>Velocidad de pérdida</span></div>
+    <div class="kpi"><strong id="ldOut">—</strong><span>Planeo L/D</span></div>
+    <div class="kpi"><strong id="rangeOut">—</strong><span>Alcance desde 5 m</span></div>
+    <div class="kpi"><strong id="loadingOut">—</strong><span>Carga alar</span></div>
+    <div class="kpi"><strong id="stabilityOut">—</strong><span>Estabilidad</span></div>
+    <div class="kpi"><strong id="dragOut">—</strong><span>Drag relativo</span></div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2 class="concept-title">4. Comparación controlada</h2>
+  <p class="small">Guarda un diseño A y luego modifica una sola variable.</p>
+  <div class="compare">
+    <div class="kpi"><span>Diseño A</span><div id="aSummary" class="small">Aún no guardado.</div></div>
+    <div class="kpi"><span>Diseño actual</span><div id="bSummary" class="small"></div></div>
+  </div>
+  <div id="compareInsight" class="note">Cambia una sola variable para poder atribuir el efecto a una causa concreta.</div>
+</section>
+
+<section class="panel">
+  <h2 class="concept-title">5. Challenges para la sesión</h2>
+  <div class="exercise"><strong>Challenge 1 · Una variable a la vez</strong><br><span class="small">Prueba envergaduras de 45, 60, 75 y 90 cm. Mantén todo lo demás igual.</span></div>
+  <div class="exercise"><strong>Challenge 2 · Misma área, distinta forma</strong><br><span class="small">Crea un ala corta y ancha y otra larga y angosta con área parecida. Compara su aspect ratio y el L/D.</span></div>
+  <div class="exercise"><strong>Challenge 3 · Centro de masa</strong><br><span class="small">Prueba centro de masa adelantado, equilibrado y atrasado. ¿Qué cambia entre estabilidad y desempeño?</span></div>
+  <div class="exercise"><strong>Challenge 4 · Engineering Challenge</strong><br><span class="small">Masa = 100 g, velocidad máxima = 7 m/s. Maximiza alcance manteniendo estabilidad “Buena” en solo tres intentos.</span></div>
+</section>
+
+<section class="panel">
+  <h2 class="concept-title">6. Conceptos rápidos</h2>
+  <div class="grid">
+    <div><p><strong>Área alar</strong></p><div class="formula">S ≈ envergadura × cuerda × factor de forma</div></div>
+    <div><p><strong>Aspect ratio</strong></p><div class="formula">AR = b² / S</div></div>
+    <div><p><strong>Carga alar</strong></p><div class="formula">Wing loading = W / S</div></div>
+    <div><p><strong>Velocidad de pérdida</strong></p><div class="formula">Vstall ≈ √(2W / (ρ S CLmax))</div></div>
+  </div>
+</section>
+
+</main>
+
+<script>
+const $=id=>document.getElementById(id);
+let savedA=null, raf=null;
+const defaults={span:65,chord:12,mass:90,speed:7,shape:'ellip',cg:'neutral'};
+const shapeFactor={rect:1,taper:.86,ellip:.79,swept:.82};
+const oswald={rect:.73,taper:.82,ellip:.90,swept:.76};
+const cd0={rect:.041,taper:.037,ellip:.034,swept:.043};
+
+function state(){return{span:+$('span').value/100,chord:+$('chord').value/100,mass:+$('mass').value/1000,speed:+$('speed').value,shape:$('shape').value,cg:$('cg').value}}
+function calc(x){
+ const rho=1.225,g=9.81,CL=.72,CLmax=1.05;
+ const S=x.span*x.chord*shapeFactor[x.shape], AR=x.span*x.span/S, W=x.mass*g;
+ const k=1/(Math.PI*oswald[x.shape]*AR), CD=cd0[x.shape]+k*CL*CL;
+ let LD=CL/CD; if(x.cg==='forward')LD*=.95; if(x.cg==='aft')LD*=.92;
+ const stall=Math.sqrt((2*W)/(rho*S*CLmax));
+ return{S,AR,W,CD,LD,stall,loading:W/S,range:5*LD,drag:CD*1000}
+}
+function names(x){return{shape:{rect:'Rectangular',taper:'Trapezoidal',ellip:'Elíptica',swept:'Barrida'}[x.shape],cg:{forward:'Adelantado',neutral:'Equilibrado',aft:'Atrasado'}[x.cg]}}
+function summary(x,r){const n=names(x);return `<strong>${n.shape}</strong> · CG ${n.cg}<br>b ${(x.span*100).toFixed(0)} cm · cuerda ${(x.chord*100).toFixed(1)} cm · masa ${(x.mass*1000).toFixed(0)} g<br>Área ${(r.S*10000).toFixed(0)} cm² · AR ${r.AR.toFixed(1)} · Vstall ${r.stall.toFixed(1)} m/s · L/D ${r.LD.toFixed(1)} · alcance ${r.range.toFixed(1)} m`}
+function wingPath(shape){if(shape==='rect')return'M-32 -8 L32 -8 L32 8 L-32 8 Z';if(shape==='taper')return'M-34 -5 L34 -5 L27 7 L-29 9 Z';if(shape==='ellip')return'M-34 0 C-28 -11 28 -11 34 0 C28 11 -28 11 -34 0 Z';return'M-34 -7 L34 -7 L18 9 L-18 9 Z'}
+function update(){
+ const x=state(),r=calc(x);
+ $('spanV').textContent=(x.span*100).toFixed(0)+' cm';$('chordV').textContent=(x.chord*100).toFixed(1)+' cm';$('massV').textContent=(x.mass*1000).toFixed(0)+' g';$('speedV').textContent=x.speed.toFixed(1)+' m/s';
+ $('areaOut').textContent=(r.S*10000).toFixed(0)+' cm²';$('arOut').textContent=r.AR.toFixed(1);$('stallOut').textContent=r.stall.toFixed(1)+' m/s';$('ldOut').textContent=r.LD.toFixed(1)+':1';$('rangeOut').textContent=r.range.toFixed(1)+' m';$('loadingOut').textContent=r.loading.toFixed(1)+' N/m²';$('dragOut').textContent=r.drag.toFixed(1);
+ $('stabilityOut').textContent=x.cg==='aft'?'Baja':x.cg==='forward'?'Alta':'Buena';$('stabilityOut').className=x.cg==='aft'?'bad':'good';
+ $('wingShape').setAttribute('d',wingPath(x.shape));$('bSummary').innerHTML=summary(x,r);
+ $('flightStatus').innerHTML=x.speed<r.stall?'<span class="bad"><strong>Por debajo de Vstall:</strong> pérdida temprana.</span>':'<span class="good"><strong>Velocidad suficiente:</strong> planeo estable aproximado.</span>';
+ $('svgText').textContent=`L/D ${r.LD.toFixed(1)} | Vstall ${r.stall.toFixed(1)} m/s | alcance ideal ${r.range.toFixed(1)} m`;
+ compare();
+}
+function compare(){
+ if(!savedA)return;
+ const b=calc(state()),a=savedA.r,p=(v1,v0)=>100*(v1-v0)/Math.abs(v0);
+ const dr=p(b.range,a.range),dl=p(b.LD,a.LD),ds=p(b.stall,a.stall);
+ $('compareInsight').textContent=`Vs diseño A: alcance ${dr>=0?'+':''}${dr.toFixed(1)}%, L/D ${dl>=0?'+':''}${dl.toFixed(1)}%, Vstall ${ds>=0?'+':''}${ds.toFixed(1)}%.`;
+}
+function animate(){
+ if(raf)cancelAnimationFrame(raf);
+ const x=state(),r=calc(x),plane=$('plane'),path=$('trajectory');
+ const below=x.speed<r.stall,endX=Math.min(660,120+r.range*8);
+ path.setAttribute('d',below?`M45 60 Q${45+(endX-45)*.45} 95 ${45+(endX-45)*.55} 260`:`M45 60 L${endX} 260`);
+ const len=path.getTotalLength();let start=null;
+ function step(ts){if(start===null)start=ts;const t=Math.min(1,(ts-start)/2200);const pt=path.getPointAtLength(len*t);let wobble=0;if(x.cg==='aft')wobble=Math.sin(t*20)*10*(1-t);plane.setAttribute('transform',`translate(${pt.x} ${pt.y+wobble})`);if(t<1)raf=requestAnimationFrame(step)}
+ raf=requestAnimationFrame(step);
+}
+$('run').addEventListener('click',animate);
+$('save').addEventListener('click',()=>{const x=state(),r=calc(x);savedA={x:{...x},r:{...r}};$('aSummary').innerHTML=summary(x,r);$('compareInsight').textContent='Diseño A guardado. Cambia una sola variable y compara.'});
+$('reset').addEventListener('click',()=>{for(const k of ['span','chord','mass','speed'])$(k).value=defaults[k];$('shape').value=defaults.shape;$('cg').value=defaults.cg;savedA=null;$('aSummary').textContent='Aún no guardado.';$('compareInsight').textContent='Cambia una sola variable para poder atribuir el efecto a una causa concreta.';$('plane').setAttribute('transform','translate(45 60)');update()});
+['span','chord','mass','speed','shape','cg'].forEach(id=>$(id).addEventListener('input',update));
+update();
+</script>
+</body>
+</html>
