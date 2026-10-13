@@ -23,5 +23,5 @@ El repositorio puede desplegarse como sitio estático. Para rutas `/apps/nombre/
 
 ## Primeras herramientas
 
-- **Historias al Cubo:** juego de dados para narración oral (V4 aprobada; pendiente de incorporar al repositorio).
+- **Historias al Cubo:** juego de dados para narración oral (V4 publicada en `apps/historias-al-cubo/`).
 - **Simulador Aeroespacial:** candidato a incorporar cuando se valide el archivo final.
