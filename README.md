@@ -17,6 +17,8 @@ Biblioteca de herramientas web de Tukana para mentorías y experiencias de apren
 4. Documentar el objetivo pedagógico, el modo de uso y el estado de cada aplicación.
 5. Probar los cambios antes de publicarlos.
 
+- **Taller de Newton:** tres leyes, laboratorio de fricción y retos de predicción, disponible en `apps/taller-de-newton/`.
+
 ## Publicación
 
 El repositorio puede desplegarse como sitio estático. Para rutas `/apps/nombre/`, basta con que cada carpeta tenga `index.html`. La elección del hosting y del dominio está pendiente.
