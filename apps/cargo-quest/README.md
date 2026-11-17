@@ -1,30 +1,34 @@
-# Cargo Quest — Edición Aula V2
+# Cargo Quest — Physics Arena V3
 
-Juego 2D de estrategia y precisión para explorar las leyes de Newton y el rozamiento. Se conserva la mecánica de preparar el empuje, lanzar la carga, analizar el resultado y ajustar el siguiente intento.
-
-## Lo nuevo
-
-- **Academia de Física:** módulo desplegable con las leyes de Newton, diagrama de cuerpo libre, fricción estática vs. cinética, vectores y cálculo de distancia, más un miniexperimento interactivo del umbral de arranque.
-- **Distancia medible:** regla con marcas en metros, posición inicial de la meta, rango válido y distancia restante a la meta.
-- **Predicción voluntaria:** el estudiante puede escribir cuántos metros cree que recorrerá la caja y comparar su estimación con el resultado.
-- **Seis misiones:** se conservan cuatro y se agregan *Carga pesada* y *Entrega maestra*.
-- **Progreso:** barra e insignias por misión, sin penalización por ensayar.
-- **Identidad:** paleta provisional azul petróleo, turquesa y amarillo, pendiente de confirmar códigos oficiales de marca Tukana.
+**Tukana Lab · Juego de precisión y estrategia sobre Newton y fricción**
 
 ## Cómo jugar
 
-1. Consulta la lección o inicia directamente una misión.
-2. Lee la distancia exacta de la meta y analiza masa, coeficientes de fricción y controles disponibles.
-3. Estima una distancia (opcional), ajusta fuerza, duración y/o ángulo, y pulsa lanzar.
-4. Compara el lugar donde se detuvo la carga con la meta y tu predicción.
-5. Explica qué fuerza determinó el resultado; cambia una sola variable y repite.
+1. Selecciona un nivel y configura masa, material y fuerza. El método de tracción, duración y ángulo se desbloquean según el nivel.
+2. Consulta los coeficientes de fricción estática (μs) y cinética (μk) del par de superficies seleccionado.
+3. Completa cuatro predicciones: normal, fricción estática máxima, fricción cinética y distancia final.
+4. Lanza; observa el desplazamiento y compara tus cálculos con los resultados.
+5. En **modo competitivo**, dos equipos bloquean sus estrategias antes de ver los lanzamientos, con dos rondas y una puntuación de cercanía a la zona.
 
-## Modelo físico y sus límites
+## Los cuatro niveles
 
-Modelo educativo unidimensional de una carga sobre patines que se desliza por un suelo horizontal; g = 9,8 m/s². La fricción estática se ajusta hasta μₛ N y la cinética tiene magnitud μₖ N, contraria al deslizamiento. Al tirar hacia arriba de una cuerda, la normal se calcula como N = mg − F sen θ mientras la carga siga en contacto. No se simulan rodadura, deformaciones, impactos realistas ni vuelo.
+| Nivel | Escenario | Meta |
+|---|---|---|
+| 1 | Almacén | Cruzar 2 m superando la fricción estática |
+| 2 | Puerto | Detenerse entre 4,80 y 6,00 m |
+| 3 | Estación de montaña | Detenerse entre 4,00 y 5,20 m mediante cuerda |
+| 4 | Physics Arena | Detenerse entre 5,80 y 6,60 m usando todos los controles |
 
-Los coeficientes ilustran diferencias entre materiales; **no son mediciones universales**. El simulador usa integración numérica de intervalos pequeños para representar el movimiento. Las soluciones de las seis misiones se comprobaron con un modelo numérico independiente, pero sigue siendo necesario probar usabilidad y comprensión con estudiantes.
+El archivo `matriz-matematica-v3.md` incluye las **ecuaciones, supuestos, coeficientes y una solución verificada por nivel**. La copia `v2-edicion-aula.html` preserva la edición anterior.
 
-## Privacidad y tecnología
+## Alcance y límites
 
-HTML + CSS + Canvas 2D + JavaScript. No requiere servidor de datos ni almacena información personal de menores. La fuente remota, cuando está disponible, es opcional.
+HTML, CSS y Canvas JavaScript sin dependencias de ejecución. Modelo 1D didáctico, horizontal, carga sobre patines deslizantes, g=9,8 m/s². Los coeficientes son **valores ilustrativos**, no datos de laboratorio. No se modela rodadura, colisión ni levantamiento. Los resultados de física son deterministas. No hay almacenamiento de información personal.
+
+## Estado de pruebas
+
+✅ Sintaxis de JavaScript validada con Node. ✅ Cuatro niveles tienen configuraciones ganadoras comprobadas mediante ejecución aislada del motor. ⚠️ Revisión completa de navegador (Chrome/Safari) y pruebas con estudiantes pendientes: el entorno de pruebas actual restringe Chromium.
+
+## Identidad
+
+Paleta provisional azul petróleo, turquesa y acentos amarillos. Pendiente de contrastar con la guía oficial de marca de Tukana.
