@@ -1,6 +1,6 @@
-# Cargo Quest — Physics Arena V3
+# El Jardín de Newton — V4
 
-**Tukana Lab · Juego de precisión y estrategia sobre Newton y fricción**
+**Tukana Lab · Juego de precisión y estrategia sobre Newton y fricción. Anteriormente Cargo Quest.**
 
 ## Cómo jugar
 
