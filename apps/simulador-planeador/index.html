@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Tukana Aerospace — Glider Lab</title>
+<title>Tukana Box — Glider Lab</title>
 <style>
   :root{
     --bg:#f4f6f8; --panel:#ffffff; --ink:#182234; --muted:#667085;
@@ -45,8 +45,17 @@
   .exercise:last-child{border-bottom:0}
   @media(max-width:850px){.grid,.controls,.compare,.kpis{grid-template-columns:1fr}}
 </style>
-</head>
-<body>
+<style id="tb-identity-css">
+.tb-return{position:relative;z-index:1000;background:var(--tb-background,#fff);border-bottom:1px solid rgba(25,33,42,.1);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#25303c;line-height:1.25}
+.tb-return-inner{max-width:1280px;margin:0 auto;min-height:54px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 22px}
+.tb-return a{color:inherit;text-decoration:none!important;display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.tb-return-home{font-weight:850!important;font-size:13px!important;letter-spacing:-.02em}
+.tb-return-home .tb-dot{width:12px;height:12px;display:inline-block;border-radius:4px;background:var(--tb-accent,#67161c);transform:rotate(-12deg)}
+.tb-return-back{border:1px solid rgba(30,35,45,.14);padding:8px 12px;border-radius:999px;background:#fff;color:#30363c!important;font-weight:720!important;font-size:12px!important}
+.tb-return-back:hover{background:var(--tb-background,#fafafa);border-color:var(--tb-accent,#67161c)}
+@media(max-width:470px){.tb-return-inner{padding:8px 12px}.tb-return-home{font-size:12px!important}.tb-return-back{font-size:11px!important;padding:8px 10px}}
+</style></head>
+<body><div class="tb-return" style="--tb-accent:#203f68;--tb-background:#f4f6f8" role="navigation" aria-label="Navegación de Tukana Box"><div class="tb-return-inner"><a class="tb-return-home" href="../../index.html" aria-label="Tukana Box: ir a inicio"><span class="tb-dot" aria-hidden="true"></span>TUKANA BOX</a><a class="tb-return-back" href="../../index.html">← Volver a experiencias</a></div></div>
 <header>
   <div class="inner">
     <h1>Glider Lab — Flight · Sesión 2</h1>
