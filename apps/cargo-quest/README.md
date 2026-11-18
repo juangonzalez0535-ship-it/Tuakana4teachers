@@ -32,3 +32,9 @@ HTML, CSS y Canvas JavaScript sin dependencias de ejecución. Modelo 1D didácti
 ## Identidad
 
 Paleta provisional azul petróleo, turquesa y acentos amarillos. Pendiente de contrastar con la guía oficial de marca de Tukana.
+
+## V4 — Pantalla dividida por equipos
+
+En **modo competitivo** aparecen dos carriles con el mismo escenario y escala: **equipo A rojo** (arriba) y **equipo B azul** (abajo). Las estrategias siguen bloqueándose por separado antes del lanzamiento, y ambas cajas se animan **simultáneamente**. Al finalizar, las posiciones permanecen visibles para comparar la cercanía a la meta, también después de la segunda ronda; se muestran los mejores resultados de cada equipo. El modo individual mantiene la interfaz anterior.
+
+**Verificación V4:** se probó con Chromium la pantalla dividida, el bloqueo de estrategias, la primera y segunda ronda, y la comparación final sin errores JavaScript. Quedan pendientes pruebas pedagógicas con estudiantes y revisión en Safari y tabletas.
